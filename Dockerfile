@@ -1,9 +1,9 @@
 FROM n8nio/n8n:latest
 
-# Use DATABASE_URL directly (Render recommended method)
+# Only DATABASE_URL + SSL settings (no DB_HOST/DB_USER/etc)
 ENV NODE_ENV=production \
-    DB_TYPE=postgresdb \
     DATABASE_URL=postgresql://database_uzyd_user:um6h8byTSUVPmk3bETljJNmMmT01Rljd@dpg-d6b453bnv86c73cvadn0-a/database_uzyd \
+    DB_TYPE=postgresdb \
     DB_POSTGRESDB_SSL_ENABLED=true \
     DB_POSTGRESDB_SSL_REJECT_UNAUTHORIZED=false \
     N8N_HOST=0.0.0.0 \
