@@ -1,9 +1,11 @@
 FROM n8nio/n8n:latest
 
-# Only DATABASE_URL + SSL settings (no DB_HOST/DB_USER/etc)
+# ----------------------------
+# Environment variables
+# ----------------------------
 ENV NODE_ENV=production \
+    DB_TYPE=postgres \
     DATABASE_URL=postgresql://database_uzyd_user:um6h8byTSUVPmk3bETljJNmMmT01Rljd@dpg-d6b453bnv86c73cvadn0-a/database_uzyd \
-    DB_TYPE=postgresdb \
     DB_POSTGRESDB_SSL_ENABLED=true \
     DB_POSTGRESDB_SSL_REJECT_UNAUTHORIZED=false \
     N8N_HOST=0.0.0.0 \
@@ -15,10 +17,18 @@ ENV NODE_ENV=production \
     N8N_BASIC_AUTH_ACTIVE=false \
     N8N_ENCRYPTION_KEY=my-simple-key-123
 
+# ----------------------------
 # Fix permissions
+# ----------------------------
 USER root
 RUN mkdir -p /home/node/.n8n && chown -R node:node /home/node/.n8n
-
 USER node
 
+# ----------------------------
+# Expose port
+# ----------------------------
 EXPOSE 5678
+
+# ----------------------------
+# ENTRYPOINT is inherited from n8n image, do not override
+# ----------------------------
