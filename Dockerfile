@@ -4,10 +4,8 @@ FROM n8nio/n8n:latest
 # Environment variables
 # ----------------------------
 ENV NODE_ENV=production \
-    DB_TYPE=postgres \
-    DATABASE_URL=postgresql://database_uzyd_user:um6h8byTSUVPmk3bETljJNmMmT01Rljd@dpg-d6b453bnv86c73cvadn0-a/database_uzyd \
-    DB_POSTGRESDB_SSL_ENABLED=true \
-    DB_POSTGRESDB_SSL_REJECT_UNAUTHORIZED=false \
+    DB_TYPE=sqlite \
+    DB_SQLITE_DATABASE=/home/node/.n8n/database.sqlite \
     N8N_HOST=0.0.0.0 \
     N8N_PORT=5678 \
     N8N_PROTOCOL=http \
@@ -29,6 +27,4 @@ USER node
 # ----------------------------
 EXPOSE 5678
 
-# ----------------------------
-# ENTRYPOINT is inherited from n8n image, do not override
-# ----------------------------
+# ENTRYPOINT is inherited from n8n image
